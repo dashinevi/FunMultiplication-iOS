@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct FunMultiplicationApp: App {
+    @StateObject var viewModel = MultiplicationViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var activeTab: Tab = .home
+    @StateObject private var viewModel = MultiplicationViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                switch activeTab {
+                case .home:
+                    HomeView(viewModel: viewModel)
+                case .settings:
+                    SettingsView(viewModel: viewModel)
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    TabBarView(selectedTab: $activeTab)
+                }
+            }
         }
-        .padding()
     }
 }
 
